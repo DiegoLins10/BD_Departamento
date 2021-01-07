@@ -4,7 +4,7 @@
 
 ### Objetivo 😄
 
-Fazer a conexão de um banco de dados Mysql usando java e SQL server com o objetivo de registrar, excluir e achar funcionarios e departamentos nas tabelas.
+Fazer a conexão de um banco de dados Mysql usando java e SQL server com o objetivo de registrar, excluir, atualizar e achar funcionarios e departamentos nas tabelas.
 
 ### Funções
 
