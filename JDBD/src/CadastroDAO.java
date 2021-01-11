@@ -186,7 +186,7 @@ public class CadastroDAO extends JFrame implements ActionListener {
 
 		int resp =JOptionPane.showConfirmDialog(null, "Confirma a Exclusão ?", "Exclusão", JOptionPane.YES_NO_OPTION);	
 		if (resp == JOptionPane.YES_OPTION){
-			if (this.pesquisar(txtCodigo.getText(), "IdUsuario", true)) {
+			if (this.pesquisar(txtIdEmpregado.getText(), "IdUsuario", true)) {
 				usuarioDAO.delete(id);;  // Excluir Usuário
 				this.limpar();
 			} 

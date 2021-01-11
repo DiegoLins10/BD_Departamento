@@ -133,5 +133,18 @@ public class UsuarioDAO {
 			return usuario;
 		}
 	}
+    public void delete(int IdUsuario){
+		conn = conexao.conectar();
+		try {
+			st = conn.prepareStatement(sqlDelete);
+			st.setInt(1, IdUsuario);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro de execução comando \n" + sqlDelete+"\n"+e);
+		}
+		finally{
+			conexao.fecharConexao(conn);
+		}
+	}
 
 }
