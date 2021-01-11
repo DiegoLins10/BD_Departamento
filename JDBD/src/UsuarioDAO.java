@@ -18,7 +18,7 @@ public class UsuarioDAO {
     
     UsuarioDAO () {
     	sqlInsert = "Insert Into Empregado (IdEmpregado, NomeEmpregado, IdDepto, Cargo, Tempo_Emp, Salario, Comissao) Values (?, ?, ?, ?, ?, ?, ?)";
-		sqlUpdate = "Update Usuario Set Nome = ?, Email = ?, Telefone = ?, Endereco = ? Where IdUsuario = ?";
+		sqlUpdate = "Update Empregado Set NomeEmpregado = ?, IdDepto = ?, Cargo = ?, Tempo_Emp = ?, Salario = ?, Comissao = ? Where IdEmpregado = ?";
 		sqlDelete = "Delete From Usuario Where IdUsuario = ?";
 		sqlSelect = "Select IdUsuario, Nome, Email, Telefone, Endereco From Usuario";
 	}
@@ -37,6 +37,25 @@ public class UsuarioDAO {
 			st.executeUpdate();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro de execução comando \n" + sqlInsert+"\n"+e);
+		}
+		finally{
+			conexao.fecharConexao(conn);
+		}
+	}
+    public void update(Empregado usuario){
+		conn = conexao.conectar();
+		try {
+			st = conn.prepareStatement(sqlUpdate);
+			st.setString(1, usuario.getNomeEmpregado());
+			st.setInt(2, usuario.getIdDepto());
+			st.setString(3, usuario.getCargo());
+			st.setInt(4, usuario.getTempo_Emp());
+			st.setDouble(5, usuario.getSalario());
+			st.setDouble(6, usuario.getComissao());
+			st.setInt(7, usuario.getIdEmpregado());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro de execução comando \n" + sqlUpdate+"\n"+e);
 		}
 		finally{
 			conexao.fecharConexao(conn);

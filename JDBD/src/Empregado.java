@@ -10,6 +10,10 @@ public class Empregado {
 	private int Tempo_Emp;
 	private double Salario;
 	private double Comissao;
+	
+	public Empregado(){
+		
+	}
 
 	public Empregado(int idEmpregado, String nomeEmpregado, int idDepto, String cargo, int tempo_Emp, double salario,
 			double comissao) {
