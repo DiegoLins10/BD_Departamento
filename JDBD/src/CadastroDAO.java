@@ -97,19 +97,19 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		if (e.getSource() == btSair) {
 			System.exit(0);
 		} if (e.getSource() == btPesquisar) {
-			if (!(txtCodigo.getText().isEmpty())) {
-				pesquisar(txtCodigo.getText(),"IdUsuario",true);
-			} else if (!(txtNome.getText().isEmpty())){
-				pesquisar(txtNome.getText(),"nome",true);				
-			} else if (!(txtEmail.getText().isEmpty())){
-				pesquisar(txtEmail.getText(),"email",true);								
+			if (!(txtIdEmpregado.getText().isEmpty())) {
+				pesquisar(txtIdEmpregado.getText(),"IdEmpregado",true);
+			} else if (!(txtNomeEmpregado.getText().isEmpty())){
+				pesquisar(txtNomeEmpregado.getText(),"NomeEmpregado",true);				
+			} else if (!(txtIdDepto.getText().isEmpty())){
+				pesquisar(txtIdDepto.getText(),"IdDepto",true);								
 			} else {
-				JOptionPane.showMessageDialog(null, "Por favor, \nDigite o Código, Nome ou o Email !!!");
+				JOptionPane.showMessageDialog(null, "Por favor, \nDigite o Código, Nome ou o IdDepto !!!");
 			}
 		} else if (e.getSource() == btLimpar) {
 			this.limpar();	
 		} else if (e.getSource() == btExcluir) {
-			int id = Integer.valueOf(txtCodigo.getText());
+			int id = Integer.valueOf(txtIdEmpregado.getText());
 			this.excluir(id);
 		} else if (e.getSource() == btSalvar) {
 			this.salvar();
@@ -123,17 +123,19 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		if (campo.equals("IdUsuario")) {
 			usuario = usuarioDAO.select(Integer.parseInt(texto));    // Consultar usuário pelo Id
 		} else  {
-			usuario = usuarioDAO.select(campo, texto);    // Consultar usuário pelo Nome/Email		
+			usuario = usuarioDAO.select2(campo, texto);    // Consultar usuário pelo Nome/Email		
 		} 
 	
 		System.out.println(usuario);
 		if (!(usuario == null)){
 			if (atualizaTela) {
-				txtCodigo.setText(String.valueOf(usuario.getIdUsuario()));
-				txtNome.setText(usuario.getNome());
-				txtEmail.setText(usuario.getEmail());
-				txtTelefone.setText(usuario.getTelefone());
-				txtEndereco.setText(usuario.getEndereco());
+				txtIdEmpregado.setText(String.valueOf(usuario.getIdEmpregado()));
+				txtNomeEmpregado.setText(usuario.getNomeEmpregado());
+				txtIdDepto.setText(String.valueOf(usuario.getIdDepto()));
+				txtCargo.setText(usuario.getCargo());
+				txtTempo_Emp.setText(String.valueOf(usuario.getTempo_Emp()));
+				txtSalario.setText(String.valueOf(usuario.getSalario()));
+				txtComissao.setText(String.valueOf(usuario.getComissao()));
 			}
 			flagEncontrado = true;
 		} else if (atualizaTela) {
@@ -154,20 +156,24 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		Empregado usuario = new Empregado();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();		
 		
-		if (this.pesquisar(txtCodigo.getText(), "IdUsuario", false)) {
-			usuario.setIdUsuario(Integer.parseInt(txtCodigo.getText()));
-			usuario.setNome(txtNome.getText());
-			usuario.setEmail(txtEmail.getText());
-			usuario.setTelefone(txtTelefone.getText());
-			usuario.setEndereco(txtEndereco.getText());			
+		if (this.pesquisar(txtIdEmpregado.getText(), "IdUsuario", false)) {
+			usuario.setIdEmpregado(Integer.parseInt(txtIdEmpregado.getText()));
+			usuario.setNomeEmpregado(txtNomeEmpregado.getText());
+			usuario.setIdDepto(Integer.parseInt(txtIdDepto.getText()));
+			usuario.setCargo(txtCargo.getText());
+			usuario.setTempo_Emp(Integer.parseInt(txtTempo_Emp.getText()));
+			usuario.setSalario(Double.parseDouble(txtSalario.getText()));
+			usuario.setComissao(Double.parseDouble(txtComissao.getText()));	
 			usuarioDAO.update(usuario);;    // Atualizar usuário
 		} else
 		{
-			usuario.setIdUsuario(Integer.parseInt(txtCodigo.getText()));
-			usuario.setNome(txtNome.getText());
-			usuario.setEmail(txtEmail.getText());
-			usuario.setTelefone(txtTelefone.getText());
-			usuario.setEndereco(txtEndereco.getText());
+			usuario.setIdEmpregado(Integer.parseInt(txtIdEmpregado.getText()));
+			usuario.setNomeEmpregado(txtNomeEmpregado.getText());
+			usuario.setIdDepto(Integer.parseInt(txtIdDepto.getText()));
+			usuario.setCargo(txtCargo.getText());
+			usuario.setTempo_Emp(Integer.parseInt(txtTempo_Emp.getText()));
+			usuario.setSalario(Double.parseDouble(txtSalario.getText()));
+			usuario.setComissao(Double.parseDouble(txtComissao.getText()));
 			usuarioDAO.insert(usuario);   // Incluir usuário
 		}
 	}
