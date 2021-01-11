@@ -120,10 +120,10 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		boolean flagEncontrado=false;
 		Empregado usuario = new Empregado();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		if (campo.equals("IdUsuario")) {
+		if (campo.equals("IdEmpregado")) {
 			usuario = usuarioDAO.select(Integer.parseInt(texto));    // Consultar usuário pelo Id
 		} else  {
-			usuario = usuarioDAO.select2(campo, texto);    // Consultar usuário pelo Nome/Email		
+			usuario = usuarioDAO.select(campo, texto);    // Consultar usuário pelo Nome/Email		
 		} 
 	
 		System.out.println(usuario);
@@ -145,11 +145,13 @@ public class CadastroDAO extends JFrame implements ActionListener {
 	}
 	
 	public void limpar(){
-		txtCodigo.setText(null);
-		txtNome.setText(null);
-		txtEmail.setText(null);
-		txtTelefone.setText(null);
-		txtEndereco.setText(null);
+		txtIdEmpregado.setText(null);
+		txtNomeEmpregado.setText(null);
+		txtIdDepto.setText(null);
+		txtCargo.setText(null);
+		txtTempo_Emp.setText(null);
+		txtSalario.setText(null);
+		txtComissao.setText(null);
 	}
 	
 	public void salvar(){

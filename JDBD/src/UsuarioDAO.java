@@ -98,7 +98,7 @@ public class UsuarioDAO {
 		}
 	}
     
-    public Empregado select2(String texto, String campo) {  // CONEXAO USADA PARA O CADASTRO NA INTERFACE. //
+    public Empregado select(String texto, String campo) {  // CONEXAO USADA PARA O CADASTRO NA INTERFACE. //
 		texto +="%";
 		conn = conexao.conectar();
 		Empregado usuario = new Empregado();
