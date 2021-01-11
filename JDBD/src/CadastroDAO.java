@@ -19,7 +19,7 @@ public class CadastroDAO extends JFrame implements ActionListener {
 	CadastroDAO(){
 				
 		this.setTitle("Cadastro Usuários");
-		this.setSize(500, 300);
+		this.setSize(500, 300);  // muda o tamanho da interface
 		this.setResizable(false);
 		this.getContentPane().setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout(5,10));
@@ -37,7 +37,7 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		painel2.add(btExcluir);
 		painel2.add(btSair);
 		
-		painel3 = new JPanel(new GridLayout(7,2,10,5));
+		painel3 = new JPanel(new GridLayout(7,2,10,5)); // escolhe as colunas
 		lblIdEmpregado = new JLabel("Id Empregado");
 		lblNomeEmpregado = new JLabel("Nome empregado");
 		lblIdDepto = new JLabel("Id departamento");
