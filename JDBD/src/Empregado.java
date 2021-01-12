@@ -15,15 +15,15 @@ public class Empregado {
 		
 	}
 
-	public Empregado(int idEmpregado, String nomeEmpregado, int idDepto, String cargo, int tempo_Emp, double salario,
-			double comissao) {
-		setIdEmpregado(idEmpregado);
-		setNomeEmpregado(nomeEmpregado);
-		setIdDepto(idDepto);
-		setCargo(cargo);
-		setTempo_Emp(tempo_Emp);
-		setSalario(salario);
-		setComissao(comissao);
+	public Empregado(int IdEmpregado, String NomeEmpregado, int IdDepto, String Cargo, int Tempo_Emp, double Salario,
+			double Comissao) {
+		setIdEmpregado(IdEmpregado);
+		setNomeEmpregado(NomeEmpregado);
+		setIdDepto(IdDepto);
+		setCargo(Cargo);
+		setTempo_Emp(Tempo_Emp);
+		setSalario(Salario);
+		setComissao(Comissao);
 	}
 
 	public int getIdEmpregado() {

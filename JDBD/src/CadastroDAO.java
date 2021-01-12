@@ -15,20 +15,20 @@ public class CadastroDAO extends JFrame implements ActionListener {
 	JPanel painel2, painel3;
 	JButton btSalvar, btPesquisar, btLimpar, btSair, btExcluir;
 	static CadastroDAO t01;
-	
-	CadastroDAO(){
-				
+
+	CadastroDAO() {
+
 		this.setTitle("Cadastro Usuários");
-		this.setSize(500, 300);  // muda o tamanho da interface
+		this.setSize(500, 300); // muda o tamanho da interface
 		this.setResizable(false);
 		this.getContentPane().setBackground(Color.WHITE);
-		this.setLayout(new BorderLayout(5,10));
-		
+		this.setLayout(new BorderLayout(5, 10));
+
 		btPesquisar = new JButton("Pesquisar");
-		btLimpar = new JButton("Limpar"); 
+		btLimpar = new JButton("Limpar");
 		btSalvar = new JButton("Salvar");
-		btExcluir = new JButton("Excluir");		
-		btSair  = new JButton("Sair");
+		btExcluir = new JButton("Excluir");
+		btSair = new JButton("Sair");
 
 		painel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		painel2.add(btPesquisar);
@@ -36,8 +36,8 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		painel2.add(btSalvar);
 		painel2.add(btExcluir);
 		painel2.add(btSair);
-		
-		painel3 = new JPanel(new GridLayout(7,2,10,5)); // escolhe as colunas
+
+		painel3 = new JPanel(new GridLayout(7, 2, 10, 5)); // escolhe as colunas
 		lblIdEmpregado = new JLabel("Id Empregado");
 		lblNomeEmpregado = new JLabel("Nome empregado");
 		lblIdDepto = new JLabel("Id departamento");
@@ -45,7 +45,7 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		lblTempo_Emp = new JLabel("Tempo de empresa");
 		lblSalario = new JLabel("Salario");
 		lblComissao = new JLabel("Comissão");
-		
+
 		txtIdEmpregado = new JTextField();
 		txtNomeEmpregado = new JTextField();
 		txtIdDepto = new JTextField();
@@ -53,10 +53,10 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		txtTempo_Emp = new JTextField();
 		txtSalario = new JTextField();
 		txtComissao = new JTextField();
-		
+
 		painel3.add(lblIdEmpregado);
 		painel3.add(txtIdEmpregado);
-		
+
 		painel3.add(lblNomeEmpregado);
 		painel3.add(txtNomeEmpregado);
 
@@ -68,10 +68,10 @@ public class CadastroDAO extends JFrame implements ActionListener {
 
 		painel3.add(lblTempo_Emp);
 		painel3.add(txtTempo_Emp);
-		
+
 		painel3.add(lblSalario);
 		painel3.add(txtSalario);
-		
+
 		painel3.add(lblComissao);
 		painel3.add(txtComissao);
 		painel3.setBackground(Color.WHITE);
@@ -80,15 +80,15 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		btLimpar.addActionListener(this);
 		btPesquisar.addActionListener(this);
 		btExcluir.addActionListener(this);
-		
+
 		btSair.addActionListener(this);
-		
+
 		this.add(painel2, BorderLayout.SOUTH);
 		this.add(painel3, BorderLayout.CENTER);
 		this.setVisible(true);
-		
+
 	}
-	
+
 	public static void main(String[] args) {
 		t01 = new CadastroDAO();
 	}
@@ -96,18 +96,19 @@ public class CadastroDAO extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btSair) {
 			System.exit(0);
-		} if (e.getSource() == btPesquisar) {
+		}
+		if (e.getSource() == btPesquisar) {
 			if (!(txtIdEmpregado.getText().isEmpty())) {
-				pesquisar(txtIdEmpregado.getText(),"IdEmpregado",true);
-			} else if (!(txtNomeEmpregado.getText().isEmpty())){
-				pesquisar(txtNomeEmpregado.getText(),"NomeEmpregado",true);				
-			} else if (!(txtIdDepto.getText().isEmpty())){
-				pesquisar(txtIdDepto.getText(),"IdDepto",true);								
+				pesquisar(txtIdEmpregado.getText(), "IdEmpregado", true);
+			} else if (!(txtNomeEmpregado.getText().isEmpty())) {
+				pesquisar(txtNomeEmpregado.getText(), "NomeEmpregado", true);
+			} else if (!(txtCargo.getText().isEmpty())) {
+				pesquisar(txtCargo.getText(), "Cargo", true);
 			} else {
-				JOptionPane.showMessageDialog(null, "Por favor, \nDigite o Código, Nome ou o IdDepto !!!");
+				JOptionPane.showMessageDialog(null, "Por favor, \nDigite o Código, Nome ou o Cargo !!!");
 			}
 		} else if (e.getSource() == btLimpar) {
-			this.limpar();	
+			this.limpar();
 		} else if (e.getSource() == btExcluir) {
 			int id = Integer.valueOf(txtIdEmpregado.getText());
 			this.excluir(id);
@@ -116,18 +117,18 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		}
 	}
 
-	public boolean pesquisar(String texto, String campo, boolean atualizaTela){
-		boolean flagEncontrado=false;
+	public boolean pesquisar(String texto, String campo, boolean atualizaTela) {
+		boolean flagEncontrado = false;
 		Empregado usuario = new Empregado();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		if (campo.equals("IdEmpregado")) {
-			usuario = usuarioDAO.select(Integer.parseInt(texto));    // Consultar usuário pelo Id
-		} else  {
-			usuario = usuarioDAO.select(campo, texto);    // Consultar usuário pelo Nome/Email		
-		} 
-	
+			usuario = usuarioDAO.select(Integer.parseInt(texto)); // Consultar usuário pelo Id
+		} else {
+			usuario = usuarioDAO.select2(texto, campo); // Consultar usuário pelo Nome/Email
+		}
+
 		System.out.println(usuario);
-		if (!(usuario == null)){
+		if (!(usuario == null)) {
 			if (atualizaTela) {
 				txtIdEmpregado.setText(String.valueOf(usuario.getIdEmpregado()));
 				txtNomeEmpregado.setText(usuario.getNomeEmpregado());
@@ -140,11 +141,11 @@ public class CadastroDAO extends JFrame implements ActionListener {
 			flagEncontrado = true;
 		} else if (atualizaTela) {
 			JOptionPane.showMessageDialog(null, "Usuário não encontrado !!!");
-		}			
+		}
 		return flagEncontrado;
 	}
-	
-	public void limpar(){
+
+	public void limpar() {
 		txtIdEmpregado.setText(null);
 		txtNomeEmpregado.setText(null);
 		txtIdDepto.setText(null);
@@ -153,22 +154,12 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		txtSalario.setText(null);
 		txtComissao.setText(null);
 	}
-	
-	public void salvar(){
+
+	public void salvar() {
 		Empregado usuario = new Empregado();
-		UsuarioDAO usuarioDAO = new UsuarioDAO();		
-		
-		if (this.pesquisar(txtIdEmpregado.getText(), "IdUsuario", false)) {
-			usuario.setIdEmpregado(Integer.parseInt(txtIdEmpregado.getText()));
-			usuario.setNomeEmpregado(txtNomeEmpregado.getText());
-			usuario.setIdDepto(Integer.parseInt(txtIdDepto.getText()));
-			usuario.setCargo(txtCargo.getText());
-			usuario.setTempo_Emp(Integer.parseInt(txtTempo_Emp.getText()));
-			usuario.setSalario(Double.parseDouble(txtSalario.getText()));
-			usuario.setComissao(Double.parseDouble(txtComissao.getText()));	
-			usuarioDAO.update(usuario);;    // Atualizar usuário
-		} else
-		{
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+		if (this.pesquisar(txtIdEmpregado.getText(), "IdEmpregado", false)) {
 			usuario.setIdEmpregado(Integer.parseInt(txtIdEmpregado.getText()));
 			usuario.setNomeEmpregado(txtNomeEmpregado.getText());
 			usuario.setIdDepto(Integer.parseInt(txtIdDepto.getText()));
@@ -176,20 +167,31 @@ public class CadastroDAO extends JFrame implements ActionListener {
 			usuario.setTempo_Emp(Integer.parseInt(txtTempo_Emp.getText()));
 			usuario.setSalario(Double.parseDouble(txtSalario.getText()));
 			usuario.setComissao(Double.parseDouble(txtComissao.getText()));
-			usuarioDAO.insert(usuario);   // Incluir usuário
+			usuarioDAO.update(usuario);
+			; // Atualizar usuário
+		} else {
+			usuario.setIdEmpregado(Integer.parseInt(txtIdEmpregado.getText()));
+			usuario.setNomeEmpregado(txtNomeEmpregado.getText());
+			usuario.setIdDepto(Integer.parseInt(txtIdDepto.getText()));
+			usuario.setCargo(txtCargo.getText());
+			usuario.setTempo_Emp(Integer.parseInt(txtTempo_Emp.getText()));
+			usuario.setSalario(Double.parseDouble(txtSalario.getText()));
+			usuario.setComissao(Double.parseDouble(txtComissao.getText()));
+			usuarioDAO.insert(usuario); // Incluir usuário
 		}
 	}
 
-	public void excluir(int id){	
+	public void excluir(int id) {
 		Empregado usuario = new Empregado();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-		int resp =JOptionPane.showConfirmDialog(null, "Confirma a Exclusão ?", "Exclusão", JOptionPane.YES_NO_OPTION);	
-		if (resp == JOptionPane.YES_OPTION){
-			if (this.pesquisar(txtIdEmpregado.getText(), "IdUsuario", true)) {
-				usuarioDAO.delete(id);;  // Excluir Usuário
+		int resp = JOptionPane.showConfirmDialog(null, "Confirma a Exclusão ?", "Exclusão", JOptionPane.YES_NO_OPTION);
+		if (resp == JOptionPane.YES_OPTION) {
+			if (this.pesquisar(txtIdEmpregado.getText(), "IdEmpregado", true)) {
+				usuarioDAO.delete(id);
+				; // Excluir Usuário
 				this.limpar();
-			} 
-		}	
+			}
+		}
 	}
 }

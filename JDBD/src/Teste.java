@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Teste {
 
@@ -5,7 +6,6 @@ public class Teste {
 
 		UsuarioDAO usu = new UsuarioDAO();
 		//usu.insert(new Empregado (203,"Tais Lins",10,"TLM", 1 , 500, 150));
-		usu.update(new Empregado (203,"Tais Lins",10,"TLM", 1 , 500, 150));
-
+		//usu.update(new Empregado (203,"Tais Lins",10,"TLM", 1 , 500, 150));
 	}
 }
