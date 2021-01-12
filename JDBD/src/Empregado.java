@@ -1,5 +1,9 @@
 
-//@Author Diego LIns 07/01
+/**
+ * Classe que registra os atributos
+ * @author Diego Lins
+ * @version 11/01/2020
+ */
 
 public class Empregado {
 

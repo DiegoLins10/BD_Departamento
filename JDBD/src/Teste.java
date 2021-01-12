@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * Classe usada para testes
+ * @author Diego Lins
+ * @version 11/01/2020
+ */
+
 public class Teste {
 
 	public static void main(String[] args) {

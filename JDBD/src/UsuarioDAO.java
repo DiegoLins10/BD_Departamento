@@ -6,9 +6,15 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Classe que tem os metodos para fazer as chamadas para o banco de dados
+ * @author Diego Lins
+ * @version 11/01/2020
+ */
+
 public class UsuarioDAO {
 
-	private Main conexao = new Main();
+	private Conexao conexao = new Conexao();
 	private String sqlInsert;
 	private String sqlUpdate;
 	private String sqlDelete;

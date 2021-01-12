@@ -1,7 +1,12 @@
-import java.sql.*;
-
-//@Author Diego Lins 07/01//
-public class Main {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+/**
+ * Classe que faz a conexao com o banco de dados sql
+ * @author Diego Lins
+ * @version 11/01/2020
+ */
+public class Conexao {
 	public Connection conectar () {
     // string de conexão...usando Windows Authentication
     String connectionUrl = "jdbc:sqlserver://localhost:1433;" +

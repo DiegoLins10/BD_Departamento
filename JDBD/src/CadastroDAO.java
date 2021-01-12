@@ -8,6 +8,12 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Classe principal usada para inserir uma interface grafica ao programa para facilitar acesso ao usuario
+ * @author Diego Lins
+ * @version 11/01/2020
+ */
+
 public class CadastroDAO extends JFrame implements ActionListener {
 
 	JLabel lblIdEmpregado, lblNomeEmpregado, lblIdDepto, lblCargo, lblTempo_Emp, lblSalario, lblComissao;
