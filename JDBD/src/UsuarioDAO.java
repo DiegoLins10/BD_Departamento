@@ -151,7 +151,7 @@ public class UsuarioDAO {
 		}
 	}
 
-	public ArrayList<Empregado> getUsuarios() {
+	public ArrayList<Empregado> getUsuarios() {   //cria um arrayList com todos os dados do BD
 		conn = conexao.conectar();
 		ArrayList<Empregado> usuarios = new ArrayList<Empregado>();
 

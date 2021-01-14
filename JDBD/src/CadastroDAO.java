@@ -19,7 +19,7 @@ public class CadastroDAO extends JFrame implements ActionListener {
 	JLabel lblIdEmpregado, lblNomeEmpregado, lblIdDepto, lblCargo, lblTempo_Emp, lblSalario, lblComissao;
 	JTextField txtIdEmpregado, txtNomeEmpregado, txtIdDepto, txtCargo, txtTempo_Emp, txtSalario, txtComissao;
 	JPanel painel2, painel3;
-	JButton btSalvar, btPesquisar, btLimpar, btSair, btExcluir;
+	JButton btSalvar, btPesquisar, btLimpar, btSair, btExcluir, btConsultar;
 	static CadastroDAO t01;
 
 	CadastroDAO() {
@@ -35,13 +35,16 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		btSalvar = new JButton("Salvar");
 		btExcluir = new JButton("Excluir");
 		btSair = new JButton("Sair");
+		btConsultar = new JButton("Ver");
 
 		painel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		painel2.add(btConsultar);
 		painel2.add(btPesquisar);
 		painel2.add(btLimpar);
 		painel2.add(btSalvar);
 		painel2.add(btExcluir);
 		painel2.add(btSair);
+		
 
 		painel3 = new JPanel(new GridLayout(7, 2, 10, 5)); // escolhe as colunas
 		lblIdEmpregado = new JLabel("Id Empregado");
@@ -86,6 +89,7 @@ public class CadastroDAO extends JFrame implements ActionListener {
 		btLimpar.addActionListener(this);
 		btPesquisar.addActionListener(this);
 		btExcluir.addActionListener(this);
+		btConsultar.addActionListener(this);
 
 		btSair.addActionListener(this);
 
@@ -120,6 +124,8 @@ public class CadastroDAO extends JFrame implements ActionListener {
 			this.excluir(id);
 		} else if (e.getSource() == btSalvar) {
 			this.salvar();
+		} else if (e.getSource() == btConsultar) {
+			this.consultar();
 		}
 	}
 
@@ -200,4 +206,16 @@ public class CadastroDAO extends JFrame implements ActionListener {
 			}
 		}
 	}
-}
+	
+	public void consultar() { // consultar todos dos dados do BD
+		
+		Empregado usuario = new Empregado();
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		//JOptionPane.showMessageDialog(null, usuarioDAO.getUsuarios());
+		System.out.println(usuarioDAO.getUsuarios());
+
+		usuarioDAO.getUsuarios();
+		}
+	}
+
+

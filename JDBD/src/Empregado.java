@@ -90,7 +90,7 @@ public class Empregado {
 	public String toString() {
 		return "Empregado [IdEmpregado=" + IdEmpregado + ", NomeEmpregado=" + NomeEmpregado + ", IdDepto=" + IdDepto
 				+ ", Cargo=" + Cargo + ", Tempo_Emp=" + Tempo_Emp + ", Salario=" + Salario + ", Comissao=" + Comissao
-				+ "]";
+				+ "]\n";
 	}
 
 }
